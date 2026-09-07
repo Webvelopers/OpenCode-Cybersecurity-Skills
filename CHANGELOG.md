@@ -20,6 +20,10 @@ Project improvements and enhancements based on Graphify codebase analysis and TO
 - Automated Markdown internal link and reference validation in `validateDocs()`.
 - Robust Windows line-ending (`CRLF`) handling in frontmatter parsing.
 
+### Fixed
+
+- Removed `TODO.md` from `.gitignore` so that `TODO.md` is tracked in git and available in GitHub Actions CI/CD workflows, resolving the ENOENT validation error.
+
 ## [0.0.1] - 2026-09-07
 
 Initial release and initial commit baseline for the OpenCode Cybersecurity Skills project.
