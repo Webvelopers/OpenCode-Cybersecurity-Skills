@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This project follows a simple human-readable changelog format. Dates use `YYYY-MM-DD`.
 
+## [0.0.2] - 2026-09-07
+
+Project improvements and enhancements based on Graphify codebase analysis and TODO planning.
+
+### Added
+
+- Architecture and internal component documentation at `docs/architecture.md`.
+- Comprehensive unit test suite for the validation script at `test/validate.test.js`.
+- GitHub Actions CI/CD automated validation workflow at `.github/workflows/validate.yml`.
+- JSON Schema definition for OpenCode configuration at `schemas/opencode.schema.json` and schema validation in `validateConfig()`.
+- Expanded interoperability and cross-framework mapping matrix in `docs/framework-crosswalk.md`.
+- Skill scaffolding utility script at `scripts/scaffold-skill.js`.
+- Extended security boundary and permission rule checks in `.opencode/agent/cybersecurity.md` and `validateAgent()`.
+- Automated Markdown internal link and reference validation in `validateDocs()`.
+- Robust Windows line-ending (`CRLF`) handling in frontmatter parsing.
+
 ## [0.0.1] - 2026-09-07
 
 Initial release and initial commit baseline for the OpenCode Cybersecurity Skills project.

@@ -114,11 +114,29 @@ function walk(dir, predicate, output = []) {
   return output
 }
 
+function validateMarkdownLinks(files) {
+  const linkRegex = /\[([^\]]+)\]\((?!https?:\/\/|mailto:)([^)#\s]+)(?:#[^\s)]+)?\)/g
+  for (const file of files) {
+    const text = readText(file)
+    let match
+    const dir = path.dirname(file)
+    while ((match = linkRegex.exec(text)) !== null) {
+      const target = match[2]
+      if (!target) continue
+      const resolved = path.join(root, dir, target)
+      if (!fs.existsSync(resolved)) {
+        fail(`${file}: broken internal link to ${target} (resolved to ${resolved})`)
+      }
+    }
+  }
+}
+
 function parseFrontmatter(file) {
   return parseFrontmatterText(file, readText(file))
 }
 
-function parseFrontmatterText(file, text) {
+function parseFrontmatterText(file, rawText) {
+  const text = rawText.replace(/\r\n/g, "\n")
   if (!text.startsWith("---\n")) {
     fail(`${file}: missing opening frontmatter delimiter`)
     return { data: {}, text }
@@ -191,6 +209,11 @@ function validateConfig() {
     return
   }
 
+  const schemaFile = "schemas/opencode.schema.json"
+  if (!exists(schemaFile)) {
+    fail(`${schemaFile}: missing JSON schema`)
+  }
+
   let config
   try {
     config = JSON.parse(readText(file))
@@ -203,7 +226,11 @@ function validateConfig() {
     fail(`${file}: missing or invalid $schema`)
   }
 
-  const paths = config.skills && Array.isArray(config.skills.paths) ? config.skills.paths : []
+  if (!config.skills || typeof config.skills !== "object" || !Array.isArray(config.skills.paths)) {
+    fail(`${file}: missing or invalid skills.paths structure`)
+  }
+
+  const paths = config.skills.paths
   if (!paths.includes(".opencode/skills/cybersecurity")) {
     fail(`${file}: skills.paths must include .opencode/skills/cybersecurity`)
   }
@@ -227,7 +254,10 @@ function validateAgent() {
     '"*": ask',
     '"rm *": deny',
     '"git commit *": deny',
+    '"git push *": deny',
     '"npm install *": deny',
+    '"terraform apply *": deny',
+    '"docker run *": deny',
   ]
 
   for (const line of requiredPermissionLines) {
@@ -342,6 +372,7 @@ function validateDocs() {
     ...walk(".opencode", (file) => file.endsWith(".md")),
   ]
   for (const file of markdownFiles) validateAscii(file)
+  validateMarkdownLinks(markdownFiles)
 
   for (const file of ["README.md", "LICENSE.md", "TODO.md", "CHANGELOG.md", "VERSION"]) {
     if (!exists(file)) fail(`${file}: missing`)
@@ -380,16 +411,25 @@ function validateDocs() {
   }
 }
 
-validateConfig()
-validateAgent()
-validateSkills()
-validateCommand()
-validateDocs()
+if (require.main === module) {
+  validateConfig()
+  validateAgent()
+  validateSkills()
+  validateCommand()
+  validateDocs()
 
-if (errors.length > 0) {
-  console.error("Validation failed:")
-  for (const error of errors) console.error(`- ${error}`)
-  process.exit(1)
+  if (errors.length > 0) {
+    console.error("Validation failed:")
+    for (const error of errors) console.error(`- ${error}`)
+    process.exit(1)
+  }
+
+  console.log("OpenCode cybersecurity configuration is valid.")
 }
 
-console.log("OpenCode cybersecurity configuration is valid.")
+module.exports = {
+  parseVersion,
+  incrementPatchVersion,
+  parseFrontmatterText,
+  stripQuotes,
+}

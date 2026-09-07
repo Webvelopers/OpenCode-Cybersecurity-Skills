@@ -2,7 +2,7 @@
 
 This document maps the OpenCode cybersecurity skills to their source frameworks, assessment use cases, expected outputs, official sources, and version constraints.
 
-Project version: `0.0.1`
+Project version: `0.0.2`
 
 Tracked skills listed here keep the `metadata.version` recorded in Git HEAD unless their `SKILL.md` file has git-detected changes. A changed `SKILL.md` may move only to the immediate next patch metadata version. Framework target versions are separate and remain documented per skill.
 
@@ -32,6 +32,17 @@ Tracked skills listed here keep the `metadata.version` recorded in Git HEAD unle
 - Use `mitre-f3-fraud-ttp` only when financial fraud, monetization, or abuse flows are part of the scenario.
 - Use `cis-hardening` when the issue is secure configuration, hygiene, or baseline enforcement.
 - Use `cyber-kill-chain` when stakeholders need a stage-based narrative of an attack path.
+
+## Interoperability and Cross-Framework Mapping Matrix
+
+| Primary Concern | Primary Skill | Secondary Skill (Defense / Hardening) | Governance / Risk Skill |
+|---|---|---|---|
+| Web & API Vulnerabilities | `owasp-appsec` | `cis-hardening` | `nist-cyber-risk` |
+| Adversary TTPs & Logs | `mitre-attack-v19` | `mitre-attack-detection`, `mitre-d3fend-countermeasures` | `nist-csf-20` |
+| AI / LLM / Agent Security | `mitre-atlas-2026` | `mitre-d3fend-countermeasures` | `nist-ai-rmf-10` |
+| Financial Fraud & Abuse | `mitre-f3-fraud-ttp` | `owasp-appsec` | `nist-cyber-risk` |
+| System Hardening | `cis-hardening` | `mitre-d3fend-countermeasures` | `nist-csf-20` |
+| Attack Path Modeling | `cyber-kill-chain` | `mitre-attack-v19` | `nist-cyber-risk` |
 
 ## Reporting Rules
 

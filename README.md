@@ -2,11 +2,11 @@
 
 Project-scoped OpenCode configuration for cybersecurity assessment workflows. This repository provides a curated set of defensive cybersecurity skills and a read-only `cybersecurity` agent for evaluating codebases, architecture, dependencies, controls, AI systems, fraud risk, and security posture.
 
-Project version: `0.0.1`
+Project version: `0.0.2`
 
-Initial skill metadata version: `0.0.1`
+Initial skill metadata version: `0.0.2`
 
-Release status: initial release.
+Release status: stable release with automated validation, CI/CD, unit tests, and graph analysis improvements.
 
 ## Purpose
 
@@ -27,6 +27,7 @@ The project helps OpenCode perform structured security evaluations without modif
 | `.opencode/skills/cybersecurity/hardening` | Secure configuration and baseline hardening skills |
 | `.opencode/skills/cybersecurity/threat-modeling` | Attack-path and adversary progression modeling skills |
 | `docs/framework-crosswalk.md` | Framework-to-skill crosswalk |
+| `docs/architecture.md` | Architecture and internal component documentation |
 | `scripts/validate-opencode.js` | Local validation script |
 | `TODO.md` | Refactor checklist and execution status |
 | `CHANGELOG.md` | Project change history |
