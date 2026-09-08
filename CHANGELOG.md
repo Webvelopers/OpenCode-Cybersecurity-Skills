@@ -24,6 +24,10 @@ Versioning documentation and validation hardening release.
 - Strengthened validation for skill body sections, reference metadata sections, valid skill categories, framework crosswalk coverage, catalog coverage, and agent routing coverage.
 - Updated existing skill references with last-verified dates, pinning rationale, ID conventions, and validation guidance.
 - Updated cybersecurity agent routing, the skill catalog, and the framework crosswalk for new skills and boundary rules.
+- Hardened the `cybersecurity` agent bash permissions from broad approval to a deny-by-default read-only allowlist.
+- Hardened GitHub Actions with minimal token permissions, pinned action SHAs, Dependabot update coverage, and a high-severity npm audit check.
+- Tightened the project OpenCode schema and validation rules for unexpected config keys and semantic bash permission ordering.
+- Updated the skill scaffold template so generated skills match current validation requirements.
 
 ## [0.0.2] - 2026-09-07
 

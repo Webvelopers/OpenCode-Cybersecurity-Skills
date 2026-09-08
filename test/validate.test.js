@@ -5,6 +5,7 @@ const {
   incrementPatchVersion,
   getSkillCategory,
   missingMarkdownSections,
+  parsePermissionRules,
   parseFrontmatterText,
   stripQuotes,
 } = require("../scripts/validate-opencode.js")
@@ -49,4 +50,12 @@ test("getSkillCategory returns the top-level cybersecurity skill category", () =
     "appsec",
   )
   assert.strictEqual(getSkillCategory("docs/framework-crosswalk.md"), null)
+})
+
+test("parsePermissionRules extracts ordered tool rules", () => {
+  const content = "permission:\n  bash:\n    \"*\": deny\n    \"git status*\": ask\n  edit: deny\n"
+  assert.deepStrictEqual(parsePermissionRules(content, "bash"), [
+    { pattern: "*", action: "deny" },
+    { pattern: "git status*", action: "ask" },
+  ])
 })

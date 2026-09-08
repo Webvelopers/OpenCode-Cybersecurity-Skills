@@ -58,9 +58,11 @@ Short purpose description of the skill.
 
 Use this skill when assessing or planning defensive controls for ${skillName}.
 
-## Framework Base
+## Framework Scope
 
-- Core reference framework items.
+Target version: 1.0.
+
+Core reference framework items.
 
 ## Workflow
 
@@ -68,9 +70,14 @@ Use this skill when assessing or planning defensive controls for ${skillName}.
 2. Step 2: Evaluate controls.
 3. Step 3: Propose defensive mitigations.
 
-## Expected Output
+## Output Format
 
 Provide structured findings, evidence, impact, remediation, and verification tests.
+
+## Verification
+
+- Validate exact IDs and claims against official sources.
+- Keep evidence separate from assumptions.
 
 ## Official Sources
 
@@ -81,21 +88,29 @@ Provide structured findings, evidence, impact, remediation, and verification tes
 Keep work in an authorized defensive context. Do not generate exploit payloads or operational instructions to compromise systems.
 `
 
-const standardsMarkdown = `---
-target_version: "1.0"
-official_sources:
-  - "https://example.com"
-scope_notes:
-  - "Scope and applicability notes for ${skillName}."
-id_conventions:
-  - "Standard ID format when applicable."
-validation_guidance:
-  - "Verify findings against official source specifications."
----
+const standardsMarkdown = `# Standards Reference: ${skillName}
 
-# Standards Reference: ${skillName}
+Target version: 1.0.
 
-Reference documentation and official source mappings.
+Last verified: YYYY-MM-DD.
+
+Pinning rationale: Explain why this version or source set is the target baseline.
+
+## Official Sources
+
+- https://example.com
+
+## Scope Notes
+
+Scope and applicability notes for ${skillName}.
+
+## ID Conventions
+
+- Standard ID format when applicable.
+
+## Validation Guidance
+
+Verify findings against official source specifications.
 `
 
 fs.writeFileSync(path.join(skillDir, "SKILL.md"), skillMarkdown, "utf8")

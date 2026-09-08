@@ -22,5 +22,5 @@
     }
   },
   "required": ["$schema", "skills"],
-  "additionalProperties": true
+  "additionalProperties": false
 }

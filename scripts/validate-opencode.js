@@ -106,6 +106,22 @@ function getSkillCategory(file) {
   return parts.length >= 3 && parts[1] ? parts[0] : null
 }
 
+function parsePermissionRules(text, key) {
+  const lines = text.split(/\r?\n/)
+  const start = lines.findIndex((line) => line === `  ${key}:`)
+  if (start === -1) return []
+
+  const rules = []
+  for (const line of lines.slice(start + 1)) {
+    if (!line.startsWith("    ")) break
+
+    const match = line.match(/^\s{4}"([^"]+)":\s*(allow|ask|deny)$/)
+    if (match) rules.push({ pattern: match[1], action: match[2] })
+  }
+
+  return rules
+}
+
 function parseGitStatusPath(line) {
   const value = line.slice(3).trim()
   const currentPath = value.includes(" -> ") ? value.split(" -> ").pop() : value
@@ -278,9 +294,18 @@ function validateConfig() {
     fail(`${file}: missing or invalid skills.paths structure`)
   }
 
+  const allowedConfigKeys = new Set(["$schema", "skills"])
+  for (const key of Object.keys(config)) {
+    if (!allowedConfigKeys.has(key)) fail(`${file}: unexpected top-level key ${key}`)
+  }
+
   const paths = config.skills.paths
   if (!paths.includes(".opencode/skills/cybersecurity")) {
     fail(`${file}: skills.paths must include .opencode/skills/cybersecurity`)
+  }
+
+  if (exists(schemaFile) && readText(schemaFile).includes('"additionalProperties": true')) {
+    fail(`${schemaFile}: root additionalProperties must be false for this project schema`)
   }
 }
 
@@ -299,17 +324,85 @@ function validateAgent() {
     "edit: deny",
     "task: deny",
     "external_directory: deny",
-    '"*": ask',
-    '"rm *": deny',
-    '"git commit *": deny',
-    '"git push *": deny',
-    '"npm install *": deny',
-    '"terraform apply *": deny',
-    '"docker run *": deny',
   ]
 
   for (const line of requiredPermissionLines) {
     if (!text.includes(line)) fail(`${file}: missing permission rule ${line}`)
+  }
+
+  validateAgentBashAllowlist(file, text)
+}
+
+function validateAgentBashAllowlist(file, text) {
+  const bashRules = parsePermissionRules(text, "bash")
+  const requiredAskRules = [
+    "git status*",
+    "git diff*",
+    "git log*",
+    "git show *",
+    "node --test test/validate.test.js",
+    "node scripts/validate-opencode.js",
+    "npm audit --package-lock-only*",
+  ]
+
+  if (bashRules.length === 0) {
+    fail(`${file}: missing bash permission allowlist`)
+    return
+  }
+
+  if (bashRules[0].pattern !== "*" || bashRules[0].action !== "deny") {
+    fail(`${file}: first bash permission rule must be "*": deny`)
+  }
+
+  for (const rule of bashRules) {
+    if (rule.action === "allow") fail(`${file}: bash rule ${rule.pattern} must not use allow`)
+  }
+
+  for (const pattern of requiredAskRules) {
+    const rule = bashRules.find((candidate) => candidate.pattern === pattern)
+    if (!rule || rule.action !== "ask") fail(`${file}: missing bash allowlist ask rule ${pattern}`)
+  }
+}
+
+function validateWorkflow() {
+  const file = ".github/workflows/validate.yml"
+  if (!exists(file)) {
+    fail(`${file}: missing`)
+    return
+  }
+
+  const text = readText(file)
+  if (!/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(text)) {
+    fail(`${file}: missing minimal permissions contents: read`)
+  }
+
+  const actionRefRegex = /^\s*-?\s*uses:\s*(actions\/[^@\s]+)@([^\s#]+).*$/gm
+  let match
+  while ((match = actionRefRegex.exec(text)) !== null) {
+    if (!/^[0-9a-f]{40}$/.test(match[2])) {
+      fail(`${file}: ${match[1]} must be pinned to a 40-character commit SHA`)
+    }
+  }
+
+  if (!text.includes("npm audit --package-lock-only --audit-level=high")) {
+    fail(`${file}: missing high-severity dependency audit for .opencode package lock`)
+  }
+}
+
+function validateDependabot() {
+  const file = ".github/dependabot.yml"
+  if (!exists(file)) {
+    fail(`${file}: missing dependency update configuration`)
+    return
+  }
+
+  const text = readText(file)
+  if (!text.includes('package-ecosystem: "github-actions"')) {
+    fail(`${file}: missing GitHub Actions updates`)
+  }
+
+  if (!text.includes('package-ecosystem: "npm"') || !text.includes('directory: "/.opencode"')) {
+    fail(`${file}: missing npm updates for /.opencode`)
   }
 }
 
@@ -510,6 +603,8 @@ function validateDocs() {
 if (require.main === module) {
   validateConfig()
   validateAgent()
+  validateWorkflow()
+  validateDependabot()
   validateSkills()
   validateCommand()
   validateDocs()
@@ -528,6 +623,7 @@ module.exports = {
   incrementPatchVersion,
   getSkillCategory,
   missingMarkdownSections,
+  parsePermissionRules,
   parseFrontmatterText,
   stripQuotes,
 }

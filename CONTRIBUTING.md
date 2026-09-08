@@ -57,9 +57,10 @@ Every `SKILL.md` must include:
 
 ## Validation
 
-Run this command before submitting changes:
+Run these commands before submitting changes:
 
 ```bash
+node --test test/validate.test.js
 node scripts/validate-opencode.js
 ```
 
@@ -70,7 +71,7 @@ The validation must pass before changes are considered ready.
 Before submitting a change, confirm that it:
 
 - Keeps the `cybersecurity` agent read-only.
-- Requires approval before shell commands.
+- Keeps the `cybersecurity` agent bash permissions deny-by-default and limited to approved read-only commands.
 - Does not introduce write-capable automation.
 - Does not include offensive operational procedures.
 - Clearly separates evidence, assumptions, and recommendations.

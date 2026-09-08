@@ -16,11 +16,13 @@ Security issues in scope include:
 
 Do not open public issues containing secrets, credentials, private infrastructure details, or exploit instructions.
 
-Report security concerns privately to the project maintainer or repository owner. If no private channel is available, open a minimal public issue that states a security concern exists without disclosing sensitive details.
+Use GitHub private vulnerability reporting for this repository when it is available. If private vulnerability reporting is unavailable, contact the project maintainer or repository owner through a private channel. If no private channel exists, open a minimal public issue that states a security concern exists without disclosing sensitive details.
 
 ## Expected Response
 
 Maintainers should triage reports by impact and likelihood, then update configuration, skills, validation, or documentation as needed.
+
+Maintainers should keep a private reporting channel available before public releases whenever the hosting platform supports it.
 
 ## Safety Boundaries
 
