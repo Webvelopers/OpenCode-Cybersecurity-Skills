@@ -9,7 +9,7 @@ metadata:
   domain: "cybersecurity"
   subdomain: "ai-security"
   tags: "mitre-atlas,ai-security,ml,llm,agentic-ai,rag"
-  version: "0.0.1"
+  version: "0.0.2"
   author: "Webvelopers, Inc."
 ---
 
@@ -28,7 +28,7 @@ Use this skill to analyze adversarial threats against AI/ML systems, including p
 
 Target version: 2026.07.
 
-ATLAS is a public knowledge base of adversary TTPs against AI systems. The requested table lists the 2026.07 release as containing 101 techniques and 77 sub-techniques. The official `mitre-atlas/atlas-data` repository states that ATLAS uses monthly content versioning and distributes data as YAML, STIX, Navigator, and Excel artifacts.
+ATLAS is a public knowledge base of adversary TTPs against AI systems. The requested table lists the 2026.07 release as containing 101 techniques and 77 sub-techniques. The official `mitre-atlas/atlas-data` repository states that ATLAS separates monthly content versions from semantic format versions and distributes data as YAML, STIX, Navigator, and Excel artifacts.
 
 ID conventions:
 
@@ -60,7 +60,8 @@ Official data model objects and relationships:
 5. Connect techniques to mitigations, telemetry, owners, and business risks.
 6. Assess the AI supply chain: datasets, models, templates, tools, repositories, dependencies, and runtime.
 7. Assess agentic AI: tool scope, permissions, context, memory, instructions, external channels, and human-in-the-loop safeguards.
-8. For exact IDs, validate against `dist/v6/ATLAS-2026.07.yaml` or the official site.
+8. Cross-reference OWASP GenAI LLM Top 10 2026 when the system is a generative AI or LLM application.
+9. For exact IDs, validate against `dist/v6/ATLAS-2026.07.yaml` or the official site.
 
 ## Output Format
 

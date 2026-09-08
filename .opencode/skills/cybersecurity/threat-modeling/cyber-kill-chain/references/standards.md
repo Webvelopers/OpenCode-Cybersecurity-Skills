@@ -1,25 +1,26 @@
 # Cyber Kill Chain References
 
-Target version: public Lockheed Martin model.
+Target version: public Lockheed Martin Cyber Kill Chain model.
+
+Last verified: 2026-09-08.
+
+Pinning rationale: The Cyber Kill Chain is a public stage-based model rather than a frequently versioned technical catalog. Use official Lockheed Martin material for stage definitions and use ATT&CK or D3FEND for detailed TTP or countermeasure mapping.
 
 ## Official Sources
 
-- Cyber Kill Chain: https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html
+- Lockheed Martin Cyber Kill Chain: https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html
+- MITRE ATT&CK for TTP detail: https://attack.mitre.org
+- MITRE D3FEND for countermeasures: https://d3fend.mitre.org
 
 ## Scope Notes
 
-Use this model to reason about attack progression and defensive breakpoints. It is most useful for communicating where preventive, detective, and response controls can interrupt an adversary path.
+Use this skill for stage-based attack path communication, defensive breakpoint analysis, and response planning. Use ATT&CK for detailed technique IDs and D3FEND for countermeasure engineering.
 
-## Stage Conventions
+## ID Conventions
 
-- Reconnaissance
-- Weaponization
-- Delivery
-- Exploitation
-- Installation
-- Command and Control
-- Actions on Objectives
+- Stages are named: Reconnaissance, Weaponization, Delivery, Exploitation, Installation, Command and Control, Actions on Objectives.
+- If IDs are needed, use ATT&CK IDs for adversary techniques and D3FEND IDs for countermeasures rather than inventing Kill Chain IDs.
 
 ## Validation Guidance
 
-Use Kill Chain stages as a strategic model. Use ATT&CK or ATLAS when detailed technique IDs are required.
+Validate stage placement by adversary objective, not by tool name alone. Ensure outputs remain defensive and do not describe tactical execution steps.

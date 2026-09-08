@@ -3,6 +3,8 @@ const assert = require("node:assert")
 const {
   parseVersion,
   incrementPatchVersion,
+  getSkillCategory,
+  missingMarkdownSections,
   parseFrontmatterText,
   stripQuotes,
 } = require("../scripts/validate-opencode.js")
@@ -27,8 +29,24 @@ test("stripQuotes removes surrounding quotes", () => {
 })
 
 test("parseFrontmatterText parses yaml frontmatter correctly", () => {
-  const content = "---\nname: test-skill\nversion: \"0.0.1\"\n---\n# Body"
+  const content = "---\nname: test-skill\nversion: \"0.0.1\"\nmetadata:\n  domain: cybersecurity\n---\n# Body"
   const result = parseFrontmatterText("test.md", content)
   assert.strictEqual(result.data.name, "test-skill")
   assert.strictEqual(result.data.version, "0.0.1")
+  assert.strictEqual(result.data.metadata.domain, "cybersecurity")
+})
+
+test("missingMarkdownSections returns sections that are not present as headings", () => {
+  const content = "# Skill\n\n## When to Use\n\n## Workflow\n"
+  assert.deepStrictEqual(missingMarkdownSections(content, ["## When to Use", "## Framework Scope", "## Workflow"]), [
+    "## Framework Scope",
+  ])
+})
+
+test("getSkillCategory returns the top-level cybersecurity skill category", () => {
+  assert.strictEqual(
+    getSkillCategory(".opencode/skills/cybersecurity/appsec/owasp-appsec/SKILL.md"),
+    "appsec",
+  )
+  assert.strictEqual(getSkillCategory("docs/framework-crosswalk.md"), null)
 })

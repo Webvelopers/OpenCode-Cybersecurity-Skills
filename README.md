@@ -29,6 +29,7 @@ The project helps OpenCode perform structured security evaluations without modif
 | `docs/framework-crosswalk.md` | Framework-to-skill crosswalk |
 | `docs/architecture.md` | Architecture and internal component documentation |
 | `docs/versioning.md` | Project release and skill metadata versioning policy |
+| `AGENTS.md` | Repository instructions for AI agents and automation contributors |
 | `scripts/validate-opencode.js` | Local validation script |
 | `TODO.md` | Refactor checklist and execution status |
 | `CHANGELOG.md` | Project change history |

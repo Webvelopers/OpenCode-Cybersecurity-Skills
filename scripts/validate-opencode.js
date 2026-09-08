@@ -8,6 +8,31 @@ const projectVersion = readProjectVersion()
 const projectVersionSemver = projectVersion ? parseVersion(projectVersion) : null
 const gitHeadExists = hasGitHead()
 const changedSkillFiles = findChangedSkillFiles(".opencode/skills/cybersecurity")
+const skillRoot = ".opencode/skills/cybersecurity"
+const validSkillCategories = new Set([
+  "appsec",
+  "detection",
+  "frameworks",
+  "governance",
+  "hardening",
+  "threat-modeling",
+])
+const requiredSkillSections = [
+  "## When to Use",
+  "## Framework Scope",
+  "## Workflow",
+  "## Output Format",
+  "## Verification",
+  "## Official Sources",
+  "## Safety Limits",
+]
+const requiredReferenceSections = [
+  "## Official Sources",
+  "## Scope Notes",
+  "## ID Conventions",
+  "## Validation Guidance",
+]
+const requiredReferencePhrases = ["Last verified:", "Pinning rationale:"]
 
 function fail(message) {
   errors.push(message)
@@ -59,6 +84,26 @@ function hasGitHead() {
 
 function normalizePath(file) {
   return file.replace(/\\/g, "/")
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+}
+
+function missingMarkdownSections(text, sections) {
+  return sections.filter((section) => {
+    const pattern = new RegExp(`^${escapeRegExp(section)}\\s*$`, "m")
+    return !pattern.test(text)
+  })
+}
+
+function getSkillCategory(file) {
+  const normalized = normalizePath(file)
+  const prefix = `${skillRoot}/`
+  if (!normalized.startsWith(prefix)) return null
+
+  const parts = normalized.slice(prefix.length).split("/")
+  return parts.length >= 3 && parts[1] ? parts[0] : null
 }
 
 function parseGitStatusPath(line) {
@@ -269,8 +314,10 @@ function validateAgent() {
 }
 
 function validateSkills() {
-  const skillFiles = walk(".opencode/skills/cybersecurity", (file) => path.basename(file) === "SKILL.md")
-  if (skillFiles.length === 0) fail(".opencode/skills/cybersecurity: no SKILL.md files found")
+  const skillFiles = walk(skillRoot, (file) => path.basename(file) === "SKILL.md")
+  if (skillFiles.length === 0) fail(`${skillRoot}: no SKILL.md files found`)
+
+  const skillNames = []
 
   const requiredMetadata = [
     "framework",
@@ -284,14 +331,20 @@ function validateSkills() {
   ]
 
   for (const file of skillFiles) {
-    const { data } = parseFrontmatter(file)
+    const { data, text } = parseFrontmatter(file)
     const folderName = path.basename(path.dirname(file))
+    const category = getSkillCategory(file)
 
     if (!data.name) fail(`${file}: missing name`)
     if (data.name !== folderName) fail(`${file}: name does not match folder ${folderName}`)
     if (!data.description) fail(`${file}: missing description`)
     if (data.license !== "MIT") fail(`${file}: expected license MIT`)
     if (!data.metadata || typeof data.metadata !== "object") fail(`${file}: missing metadata map`)
+    if (data.name) skillNames.push(data.name)
+    if (!category || !validSkillCategories.has(category)) fail(`${file}: invalid skill category ${category || "unknown"}`)
+    if (data.metadata?.domain && data.metadata.domain !== "cybersecurity") {
+      fail(`${file}: metadata.domain must be cybersecurity`)
+    }
 
     validateSkillVersion(file, data.metadata && data.metadata.version)
 
@@ -299,8 +352,47 @@ function validateSkills() {
       if (!data.metadata || !data.metadata[key]) fail(`${file}: missing metadata.${key}`)
     }
 
+    for (const section of missingMarkdownSections(text, requiredSkillSections)) {
+      fail(`${file}: missing required section ${section}`)
+    }
+
     const references = path.join(path.dirname(file), "references", "standards.md")
-    if (!exists(references)) fail(`${file}: missing references/standards.md`)
+    if (!exists(references)) {
+      fail(`${file}: missing references/standards.md`)
+    } else {
+      validateSkillReferences(references)
+    }
+  }
+
+  validateSkillDocumentationCoverage(skillNames)
+}
+
+function validateSkillReferences(file) {
+  const text = readText(file)
+
+  for (const phrase of requiredReferencePhrases) {
+    if (!text.includes(phrase)) fail(`${file}: missing ${phrase}`)
+  }
+
+  for (const section of missingMarkdownSections(text, requiredReferenceSections)) {
+    fail(`${file}: missing required section ${section}`)
+  }
+}
+
+function validateSkillDocumentationCoverage(skillNames) {
+  const coverageFiles = [
+    ".opencode/agent/cybersecurity.md",
+    ".opencode/skills/cybersecurity/README.md",
+    "docs/framework-crosswalk.md",
+  ]
+
+  for (const file of coverageFiles) {
+    if (!exists(file)) continue
+
+    const text = readText(file)
+    for (const skillName of skillNames) {
+      if (!text.includes(`\`${skillName}\``)) fail(`${file}: missing coverage for skill ${skillName}`)
+    }
   }
 }
 
@@ -434,6 +526,8 @@ if (require.main === module) {
 module.exports = {
   parseVersion,
   incrementPatchVersion,
+  getSkillCategory,
+  missingMarkdownSections,
   parseFrontmatterText,
   stripQuotes,
 }

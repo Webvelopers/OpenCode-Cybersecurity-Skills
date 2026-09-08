@@ -13,7 +13,7 @@ This version is coordinated with the root project version in `VERSION` as the in
 | `mitre-attack-v19` | v19.1 | 15 tactics, Enterprise/Mobile/ICS | Adversary behaviors and TTPs |
 | `nist-csf-20` | 2.0 | 6 functions, 22 categories, 106 subcategories | Organizational security posture |
 | `mitre-atlas-2026` | 2026.07 | 101 techniques, 77 sub-techniques | Adversarial AI/ML threats |
-| `mitre-d3fend-countermeasures` | v1.4.0 | 270 techniques | Defensive countermeasures |
+| `mitre-d3fend-countermeasures` | v1.6.0 | Defensive knowledge graph | Defensive countermeasures |
 | `nist-ai-rmf-10` | 1.0 | Govern, Map, Measure, Manage | AI risk management |
 | `mitre-f3-fraud-ttp` | v1.1 | 8 tactics, 123 techniques | Cyber-enabled financial fraud TTPs |
 
@@ -28,11 +28,15 @@ This version is coordinated with the root project version in `VERSION` as the in
 
 ## Existing Operational Skills
 
-- `appsec/owasp-appsec`: application, API, and service security review using OWASP Top 10, API Security, ASVS, and SAMM.
-- `governance/nist-cyber-risk`: governance, risk, controls, and incident response using NIST CSF, RMF, SP 800-53, SP 800-30, and SP 800-61.
-- `threat-modeling/cyber-kill-chain`: attack-path modeling and defensive controls using the Lockheed Martin Cyber Kill Chain.
-- `detection/mitre-attack-detection`: detection engineering, threat hunting, and defensive coverage using MITRE ATT&CK.
-- `hardening/cis-hardening`: hardening and control prioritization using CIS Controls and CIS Benchmarks.
+- `owasp-appsec` (`appsec/owasp-appsec`): application, API, and service security review using OWASP Top 10, API Security, ASVS, and SAMM.
+- `owasp-genai-security` (`appsec/owasp-genai-security`): GenAI, LLM, RAG, agent, prompt, tool, and output security review using OWASP GenAI LLM Top 10 2026.
+- `mobile-appsec` (`appsec/mobile-appsec`): Android, iOS, hybrid, and mobile API review using OWASP MASVS, MASWE, and MASTG.
+- `nist-cyber-risk` (`governance/nist-cyber-risk`): governance, risk, controls, and incident response using NIST CSF, RMF, SP 800-53, SP 800-30, and SP 800-61.
+- `software-supply-chain-security` (`governance/software-supply-chain-security`): secure development, CI/CD, provenance, SBOM, dependency, and artifact trust using NIST SSDF, SLSA, OpenSSF Scorecard, SPDX, and CycloneDX.
+- `vulnerability-risk-prioritization` (`governance/vulnerability-risk-prioritization`): vulnerability and weakness prioritization using CVSS v4.0, EPSS, CISA KEV, CWE, CVE, NVD, OSV, and vendor advisories.
+- `cyber-kill-chain` (`threat-modeling/cyber-kill-chain`): attack-path modeling and defensive controls using the Lockheed Martin Cyber Kill Chain.
+- `mitre-attack-detection` (`detection/mitre-attack-detection`): detection engineering, threat hunting, and defensive coverage using MITRE ATT&CK.
+- `cis-hardening` (`hardening/cis-hardening`): hardening and control prioritization using CIS Controls and CIS Benchmarks.
 
 ## Official Sources Used
 
@@ -42,6 +46,14 @@ This version is coordinated with the root project version in `VERSION` as the in
 - MITRE D3FEND: https://d3fend.mitre.org
 - NIST AI RMF: https://airc.nist.gov/AI_RMF_Knowledge_Base/AI_RMF
 - MITRE Fight Fraud Framework: https://ctid.mitre.org/fraud and https://github.com/center-for-threat-informed-defense/fight-fraud-framework
+- OWASP GenAI Security Project: https://genai.owasp.org
+- OWASP MASVS/MASWE/MASTG: https://mas.owasp.org
+- NIST SSDF: https://csrc.nist.gov/pubs/sp/800/218/final
+- SLSA: https://slsa.dev
+- OpenSSF Scorecard: https://github.com/ossf/scorecard
+- FIRST CVSS and EPSS: https://www.first.org
+- CISA KEV: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+- MITRE CWE: https://cwe.mitre.org
 
 ## Usage Notes
 

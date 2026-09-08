@@ -12,10 +12,18 @@ Versioning documentation and validation hardening release.
 
 - Documented project versioning policy and release checklist in `docs/versioning.md`.
 - Updated version references across `VERSION`, `README.md`, `.opencode/skills/cybersecurity/README.md`, `docs/framework-crosswalk.md`, and `docs/versioning.md`.
+- Added root `AGENTS.md` with repository operating scope, validation rules, versioning policy, and file hygiene guidance for AI agents.
+- Added `software-supply-chain-security` skill for NIST SSDF, SLSA, OpenSSF Scorecard, SBOM, dependency, CI/CD, provenance, and artifact trust reviews.
+- Added `vulnerability-risk-prioritization` skill for CVSS v4.0, EPSS, CISA KEV, CWE, CVE, NVD, OSV, and vendor advisory triage.
+- Added `owasp-genai-security` skill for OWASP GenAI LLM Top 10 2026, LLM, RAG, prompt, agent, tool, and output handling reviews.
+- Added `mobile-appsec` skill for OWASP MASVS, MASWE, MASTG, Android, iOS, hybrid, and mobile API reviews.
 
 ### Fixed
 
 - Documented and preserved validation hardening for dependency directories and missing required documentation files.
+- Strengthened validation for skill body sections, reference metadata sections, valid skill categories, framework crosswalk coverage, catalog coverage, and agent routing coverage.
+- Updated existing skill references with last-verified dates, pinning rationale, ID conventions, and validation guidance.
+- Updated cybersecurity agent routing, the skill catalog, and the framework crosswalk for new skills and boundary rules.
 
 ## [0.0.2] - 2026-09-07
 

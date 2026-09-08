@@ -2,11 +2,16 @@
 
 Target version: v1.1.
 
+Last verified: 2026-09-08.
+
+Pinning rationale: MITRE F3 v1.1 is the repository's current target version for repeatable fraud TTP mapping. Validate exact IDs against the public F3 site or v1.1 STIX bundle.
+
 ## Official Sources
 
 - MITRE F3 website: https://ctid.mitre.org/fraud
 - F3 repository: https://github.com/center-for-threat-informed-defense/fight-fraud-framework
 - F3 v1.1 STIX bundle: https://github.com/center-for-threat-informed-defense/fight-fraud-framework/blob/main/public/f3-stix-v1.1.json
+- F3 matrix: https://ctid.mitre.org/fraud/#/matrix
 
 ## Scope Notes
 

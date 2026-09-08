@@ -1,19 +1,19 @@
 ---
 name: mitre-d3fend-countermeasures
-description: "MITRE D3FEND v1.4.0, defensive countermeasures, D3FEND techniques: Use when mapping ATT&CK or observed threats to defensive controls."
+description: "MITRE D3FEND v1.6.0, defensive countermeasures, D3FEND techniques: Use when mapping ATT&CK or observed threats to defensive controls."
 license: MIT
 metadata:
   framework: "MITRE D3FEND"
-  target_version: "v1.4.0"
+  target_version: "v1.6.0"
   source: "https://d3fend.mitre.org"
   domain: "cybersecurity"
   subdomain: "defensive-countermeasures"
   tags: "mitre-d3fend,countermeasures,defense,controls,artifacts"
-  version: "0.0.1"
+  version: "0.0.2"
   author: "Webvelopers, Inc."
 ---
 
-# MITRE D3FEND v1.4.0 Countermeasure Mapping
+# MITRE D3FEND v1.6.0 Countermeasure Mapping
 
 Use this skill to translate threats, TTPs, or control failures into defensive countermeasures using MITRE D3FEND. D3FEND is a countermeasure knowledge graph that models how a defense addresses an offensive technique through artifacts, events, capabilities, and engineering relationships.
 
@@ -26,9 +26,9 @@ Use this skill to translate threats, TTPs, or control failures into defensive co
 
 ## Framework Scope
 
-Target version: v1.4.0, based on the requested table.
+Target version: v1.6.0, based on the current public D3FEND matrix verified during the 0.0.3 improvement pass.
 
-D3FEND v1.4.0, published in the official ontology changelog on 2026-03-31, expands space and SDR modeling, timer and clock artifacts, Control Flow Integrity, Radiation Hardening, Bus Message Authentication, Boot ROM countermeasures, and ATT&CK restrictions for cloud changes, MFA, certificates, logs, firewalls, data encryption, and recovery inhibition.
+D3FEND is a public knowledge graph of cybersecurity countermeasures. The official public matrix currently identifies D3FEND 1.6.0 and supports defensive mapping across Enterprise, ICS, SPARTA, Mobile, and ATLAS contexts.
 
 The requested table lists the scope as 270 techniques. D3FEND organizes countermeasures into defensive categories such as Model, Harden, Detect, Isolate, Deceive, Evict, and Restore.
 

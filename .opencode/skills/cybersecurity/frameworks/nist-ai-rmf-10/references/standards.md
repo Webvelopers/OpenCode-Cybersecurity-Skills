@@ -2,6 +2,10 @@
 
 Target version: 1.0.
 
+Last verified: 2026-09-08.
+
+Pinning rationale: NIST AI RMF 1.0 is the stable baseline for AI risk management. Use the NIST Generative AI Profile when the system involves GenAI-specific risks.
+
 ## Official Sources
 
 - NIST AI RMF page: https://www.nist.gov/itl/ai-risk-management-framework
@@ -20,4 +24,4 @@ Use AI RMF for AI lifecycle risk management, governance, measurement, trustworth
 
 ## Validation Guidance
 
-Separate AI governance risk, model risk, data risk, operational risk, cybersecurity risk, and adversarial AI risk. Use ATLAS when adversary behavior mapping is required.
+Separate AI governance risk, model risk, data risk, operational risk, cybersecurity risk, and adversarial AI risk. Use ATLAS when adversary behavior mapping is required and OWASP GenAI when application-level LLM risks are in scope.

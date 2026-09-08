@@ -2,12 +2,17 @@
 
 Target version: v19.1.
 
+Last verified: 2026-09-08.
+
+Pinning rationale: ATT&CK v19.1 is the repository's target version for repeatable adversary behavior mapping. Use official ATT&CK site content or `attack-stix-data` for exact ID validation.
+
 ## Official Sources
 
 - MITRE ATT&CK: https://attack.mitre.org
 - Version history: https://attack.mitre.org/resources/versions/
 - Enterprise tactics: https://attack.mitre.org/tactics/enterprise/
 - STIX data: https://github.com/mitre-attack/attack-stix-data
+- MITRE CTI archive: https://github.com/mitre/cti
 
 ## Scope Notes
 

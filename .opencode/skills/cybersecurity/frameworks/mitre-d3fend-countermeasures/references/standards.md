@@ -1,6 +1,10 @@
 # MITRE D3FEND References
 
-Target version: v1.4.0.
+Target version: v1.6.0.
+
+Last verified: 2026-09-08.
+
+Pinning rationale: The public D3FEND matrix identifies version 1.6.0. Use this target unless a report requires historical compatibility with an older D3FEND ontology.
 
 ## Official Sources
 

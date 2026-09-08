@@ -2,6 +2,10 @@
 
 Target version: 2.0.
 
+Last verified: 2026-09-08.
+
+Pinning rationale: NIST CSF 2.0 is the current major CSF release and should remain the baseline for posture assessment unless a user requests a different profile or draft document.
+
 ## Official Sources
 
 - NIST CSF resource center: https://www.nist.gov/cyberframework

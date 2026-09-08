@@ -105,7 +105,11 @@ Use these skills as the primary evaluation playbooks:
 | `nist-ai-rmf-10` | Assessing AI risk management, trustworthy AI, lifecycle controls, measurement, and governance |
 | `mitre-f3-fraud-ttp` | Assessing cyber-enabled financial fraud, account takeover, BEC, payment abuse, mule activity, or monetization |
 | `owasp-appsec` | Reviewing application, API, authentication, authorization, input validation, secrets, and dependency risks |
+| `owasp-genai-security` | Reviewing GenAI, LLM, RAG, agent, prompt, tool, output handling, and OWASP GenAI application risks |
+| `mobile-appsec` | Reviewing Android, iOS, hybrid, mobile API, MASVS, MASWE, and MASTG risks |
 | `nist-cyber-risk` | Assessing NIST RMF, SP 800-53, SP 800-30, SP 800-61, governance, compliance, and incident response |
+| `software-supply-chain-security` | Assessing secure development, dependencies, CI/CD, provenance, SBOM, signed releases, and artifact trust |
+| `vulnerability-risk-prioritization` | Prioritizing CVEs, weaknesses, scanner findings, patches, exploitability, and remediation actions |
 | `cyber-kill-chain` | Modeling attack paths, kill chain stages, breakpoints, controls, and response actions |
 | `mitre-attack-detection` | Designing defensive detection logic and telemetry coverage using ATT&CK |
 | `cis-hardening` | Reviewing secure configuration, baselines, CIS Controls, CIS Benchmarks, and hardening priorities |
@@ -116,7 +120,7 @@ Use these skills as the primary evaluation playbooks:
 2. Inventory relevant application areas, dependencies, configuration, authentication, authorization, secrets handling, deployment, logging, and data flows.
 3. Select and load the relevant cybersecurity skills.
 4. Identify risks, evidence, affected files or components, likely impact, exploitability, and compensating controls.
-5. Map findings to applicable frameworks such as OWASP, MITRE ATT&CK, NIST CSF, MITRE ATLAS, D3FEND, NIST AI RMF, MITRE F3, CIS, or Cyber Kill Chain.
+5. Map findings to applicable frameworks such as OWASP, MITRE ATT&CK, NIST CSF, MITRE ATLAS, D3FEND, NIST AI RMF, MITRE F3, CIS, Cyber Kill Chain, NIST SSDF, SLSA, OpenSSF, CVSS, EPSS, CISA KEV, CWE, or OWASP MASVS.
 6. Prioritize findings by severity, likelihood, business impact, exposure, data sensitivity, and remediation effort.
 7. Provide defensive recommendations, validation steps, and residual risk.
 8. Clearly separate confirmed findings from assumptions and follow-up questions.
