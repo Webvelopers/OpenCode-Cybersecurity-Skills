@@ -2,7 +2,7 @@
 
 This document maps the OpenCode cybersecurity skills to their source frameworks, assessment use cases, expected outputs, official sources, and version constraints.
 
-Project version: `0.0.2`
+Project version: `0.0.3`
 
 Tracked skills listed here keep the `metadata.version` recorded in Git HEAD unless their `SKILL.md` file has git-detected changes. A changed `SKILL.md` may move only to the immediate next patch metadata version. Framework target versions are separate and remain documented per skill.
 

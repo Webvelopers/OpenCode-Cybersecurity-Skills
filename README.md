@@ -2,11 +2,11 @@
 
 Project-scoped OpenCode configuration for cybersecurity assessment workflows. This repository provides a curated set of defensive cybersecurity skills and a read-only `cybersecurity` agent for evaluating codebases, architecture, dependencies, controls, AI systems, fraud risk, and security posture.
 
-Project version: `0.0.2`
+Project version: `0.0.3`
 
-Initial skill metadata version: `0.0.2`
+Initial skill metadata version: `0.0.3`
 
-Release status: stable release with automated validation, CI/CD, unit tests, and graph analysis improvements.
+Release status: stable release with versioning documentation and validation hardening.
 
 ## Purpose
 
@@ -28,6 +28,7 @@ The project helps OpenCode perform structured security evaluations without modif
 | `.opencode/skills/cybersecurity/threat-modeling` | Attack-path and adversary progression modeling skills |
 | `docs/framework-crosswalk.md` | Framework-to-skill crosswalk |
 | `docs/architecture.md` | Architecture and internal component documentation |
+| `docs/versioning.md` | Project release and skill metadata versioning policy |
 | `scripts/validate-opencode.js` | Local validation script |
 | `TODO.md` | Refactor checklist and execution status |
 | `CHANGELOG.md` | Project change history |
@@ -117,6 +118,8 @@ The validation script checks:
 
 ## Framework Version Policy
 
+See `docs/versioning.md` for the full project release and skill metadata versioning policy.
+
 Skill metadata version validation is based on Git. For tracked skills, the validator reads the current version from `HEAD:<SKILL.md>`. If the working `SKILL.md` has no git changes, `metadata.version` must match the Git version. If the working `SKILL.md` has git changes, it may keep the Git version or move to the immediate next patch, such as `0.0.1` to `0.0.2`. New skills, and skills before the first commit, must start at the root `VERSION` value.
 
 Framework target versions are separate from the project release version. They follow each skill's `metadata.target_version` field and the crosswalk. If a live official source publishes a later framework version, keep the target framework version for analysis consistency unless the user explicitly asks for the latest version.
@@ -124,6 +127,10 @@ Framework target versions are separate from the project release version. They fo
 Exact framework IDs should be validated against official sources before formal reporting.
 
 ## Releases
+
+Release `0.0.3` documents versioning policy and validation hardening updates.
+
+Release `0.0.2` adds Graphify-based project improvements, automated validation, unit tests, CI/CD, scaffolding, stronger documentation validation, and GitHub Actions fixes.
 
 The first documented release is `0.0.1`, representing the initial commit baseline for the OpenCode cybersecurity skill library, read-only `cybersecurity` agent, validation tooling, and project documentation.
 

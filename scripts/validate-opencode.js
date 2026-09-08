@@ -107,7 +107,10 @@ function walk(dir, predicate, output = []) {
 
   for (const entry of fs.readdirSync(absolute, { withFileTypes: true })) {
     const relative = path.join(dir, entry.name)
-    if (entry.isDirectory()) walk(relative, predicate, output)
+    if (entry.isDirectory()) {
+      if (entry.name === "node_modules") continue
+      walk(relative, predicate, output)
+    }
     else if (!predicate || predicate(relative)) output.push(relative)
   }
 
@@ -371,8 +374,9 @@ function validateDocs() {
     ...walk("docs", (file) => file.endsWith(".md")),
     ...walk(".opencode", (file) => file.endsWith(".md")),
   ]
-  for (const file of markdownFiles) validateAscii(file)
-  validateMarkdownLinks(markdownFiles)
+  const existingMarkdownFiles = markdownFiles.filter((file) => exists(file))
+  for (const file of existingMarkdownFiles) validateAscii(file)
+  validateMarkdownLinks(existingMarkdownFiles)
 
   for (const file of ["README.md", "LICENSE.md", "TODO.md", "CHANGELOG.md", "VERSION"]) {
     if (!exists(file)) fail(`${file}: missing`)

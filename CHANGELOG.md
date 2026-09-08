@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 This project follows a simple human-readable changelog format. Dates use `YYYY-MM-DD`.
 
+## [0.0.3] - 2026-09-08
+
+Versioning documentation and validation hardening release.
+
+### Added
+
+- Documented project versioning policy and release checklist in `docs/versioning.md`.
+- Updated version references across `VERSION`, `README.md`, `.opencode/skills/cybersecurity/README.md`, `docs/framework-crosswalk.md`, and `docs/versioning.md`.
+
+### Fixed
+
+- Documented and preserved validation hardening for dependency directories and missing required documentation files.
+
 ## [0.0.2] - 2026-09-07
 
 Project improvements and enhancements based on Graphify codebase analysis and TODO planning.
@@ -19,10 +32,13 @@ Project improvements and enhancements based on Graphify codebase analysis and TO
 - Extended security boundary and permission rule checks in `.opencode/agent/cybersecurity.md` and `validateAgent()`.
 - Automated Markdown internal link and reference validation in `validateDocs()`.
 - Robust Windows line-ending (`CRLF`) handling in frontmatter parsing.
+- Versioning documentation at `docs/versioning.md` covering project releases, skill metadata policy, release checklist, and validation commands.
 
 ### Fixed
 
 - Removed `TODO.md` from `.gitignore` so that `TODO.md` is tracked in git and available in GitHub Actions CI/CD workflows, resolving the ENOENT validation error.
+- Excluded `node_modules` directories from repository Markdown validation so third-party package documentation is not checked for project ASCII or internal-link rules.
+- Hardened documentation validation to skip ASCII and link checks for missing files, reporting required missing files through controlled validation errors instead of throwing `ENOENT`.
 
 ## [0.0.1] - 2026-09-07
 

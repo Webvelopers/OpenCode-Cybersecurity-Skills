@@ -2,7 +2,7 @@
 
 This folder contains defensive OpenCode skills based on official cybersecurity frameworks and the operational style of `mukul975/Anthropic-Cybersecurity-Skills`.
 
-Initial skill metadata version: `0.0.2`
+Initial skill metadata version: `0.0.3`
 
 This version is coordinated with the root project version in `VERSION` as the initial release baseline. Tracked skills keep the `metadata.version` recorded in Git HEAD unless their `SKILL.md` file has git-detected changes. A changed `SKILL.md` may move only to the immediate next patch metadata version. Framework target versions are tracked separately inside each skill as `metadata.target_version`.
 
