@@ -40,6 +40,10 @@ Each `SKILL.md` file has a `metadata.version` field. The validator compares skil
 
 This keeps repository releases and skill content revisions coordinated without forcing every existing skill to change metadata version on every project release.
 
+## Release `0.0.4` Changes
+
+Release `0.0.4` introduces CI quality gates, scoped OpenCode assessment commands, generated skill catalog surfaces, a read-only skill health dashboard, and validator module hardening, while bumping `@opencode-ai/plugin` to `1.18.30`.
+
 ## Release `0.0.3` Changes
 
 Release `0.0.3` documents and validates the following project-level changes:
