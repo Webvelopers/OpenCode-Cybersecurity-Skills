@@ -2,11 +2,11 @@
 
 Project-scoped OpenCode configuration for cybersecurity assessment workflows. This repository provides a curated set of defensive cybersecurity skills and a read-only `cybersecurity` agent for evaluating codebases, architecture, dependencies, controls, AI systems, fraud risk, and security posture.
 
-Project version: `0.0.3`
+Project version: `0.0.4`
 
-Initial skill metadata version: `0.0.3`
+Initial skill metadata version: `0.0.4`
 
-Release status: stable release with versioning documentation and validation hardening.
+Release status: stable release with CI quality gates, scoped assessment commands, a generated skill catalog, and a read-only skill health dashboard.
 
 ## Purpose
 
@@ -43,7 +43,7 @@ The skills are based on recognized security frameworks and official references:
 - MITRE ATT&CK v19.1 for adversary behavior and TTP mapping.
 - NIST Cybersecurity Framework 2.0 for organizational security posture.
 - MITRE ATLAS 2026.07 for AI/ML adversarial threats.
-- MITRE D3FEND v1.4.0 for defensive countermeasures.
+- MITRE D3FEND v1.6.0 for defensive countermeasures.
 - NIST AI RMF 1.0 for AI risk management.
 - MITRE Fight Fraud Framework v1.1 for cyber-enabled financial fraud TTPs.
 - OWASP guidance for application and API security.
@@ -81,17 +81,40 @@ Example prompts:
 - Recommend defensive countermeasures using MITRE D3FEND.
 - Assess this payment flow for cyber-enabled fraud risk using MITRE F3.
 
-## Security Assessment Command
+## Security Assessment Commands
 
-The project includes an OpenCode command at `.opencode/command/security-assessment.md`.
+The project includes OpenCode commands under `.opencode/command/`.
 
-Use it when you want a consistent, findings-first assessment format routed to the `cybersecurity` agent. Provide the scope after the command, such as a subsystem, feature, architecture document, dependency set, or incident narrative.
+Use them when you want consistent, findings-first assessment formats routed to the `cybersecurity` agent. Provide the scope after the command, such as a subsystem, feature, architecture document, dependency set, or incident narrative.
+
+| Command | Use when |
+|---|---|
+| `security-router` | Recommending the best assessment command and smallest useful skill set for a scope |
+| `security-assessment` | Running a broad cybersecurity assessment across relevant frameworks |
+| `security-appsec` | Reviewing web, API, service, auth, authorization, input validation, secrets, or mobile risks |
+| `security-ai` | Reviewing AI, LLM, RAG, agent, prompt, tool, model, dataset, or AI supply chain risks |
+| `security-supply-chain` | Reviewing dependencies, CI/CD, provenance, SBOM, releases, and artifact trust |
+| `security-vuln-triage` | Prioritizing CVEs, CWEs, scanner findings, advisories, patches, and exploitability |
+
+## Health Dashboard
+
+Run the read-only skill health report when you want a quick view of skill, reference, catalog, documentation coverage, and generated-drift status:
+
+```bash
+node scripts/skill-health.js --check
+```
+
+Optional Graphify usage is documented in `docs/health-dashboard.md`. Generated Graphify output must stay untracked.
 
 ## Validation
 
 Run the local validation script after changing OpenCode config, agents, commands, skills, or documentation:
 
 ```bash
+node --test test/validate.test.js
+node scripts/generate-skill-catalog.js --check
+node scripts/quality-gates.js --all
+node scripts/skill-health.js --check
 node scripts/validate-opencode.js
 ```
 
@@ -104,7 +127,10 @@ The validation script checks:
 - Required skill metadata fields.
 - Per-skill metadata version policy against Git HEAD and git-detected `SKILL.md` changes.
 - Required `references/standards.md` files.
-- Command routing for `.opencode/command/security-assessment.md`.
+- Generated skill catalog freshness for the agent routing table, skill README catalog, and framework crosswalk.
+- CI quality gate coverage for actionlint, changed-text secret scanning, forbidden artifacts, Markdown hygiene, and dependency audit setup.
+- Skill health report coverage for metadata, references, docs, catalog, and drift.
+- Command routing and required scope coverage for `.opencode/command/*.md`.
 - Required root documentation files.
 - ASCII-only Markdown content.
 
@@ -113,9 +139,9 @@ The validation script checks:
 - Keep skill names stable because users may reference them directly.
 - Keep each `SKILL.md` in a directory whose basename matches its `name` field.
 - Add official source and version notes to `references/standards.md` when framework content changes.
-- Update `docs/framework-crosswalk.md` when adding, removing, or renaming skills.
+- Update `scripts/skill-catalog.json` and run `node scripts/generate-skill-catalog.js --write` when adding, removing, renaming, or recategorizing skills.
 - Update `CHANGELOG.md` for notable changes.
-- Run `node scripts/validate-opencode.js` before committing changes.
+- Run `node --test test/validate.test.js`, `node scripts/generate-skill-catalog.js --check`, `node scripts/quality-gates.js --all`, `node scripts/skill-health.js --check`, and `node scripts/validate-opencode.js` before committing changes.
 
 ## Framework Version Policy
 
@@ -128,6 +154,8 @@ Framework target versions are separate from the project release version. They fo
 Exact framework IDs should be validated against official sources before formal reporting.
 
 ## Releases
+
+Release `0.0.4` adds CI quality gates, scoped assessment commands, a generated skill catalog, a read-only skill health report, and validator module hardening.
 
 Release `0.0.3` documents versioning policy and validation hardening updates.
 

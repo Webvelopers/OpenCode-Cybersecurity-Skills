@@ -49,11 +49,11 @@ Every `SKILL.md` must include:
 
 ## Documentation Requirements
 
-- Update `docs/framework-crosswalk.md` when a skill is added, removed, renamed, or significantly changed.
+- Update `scripts/skill-catalog.json` and run `node scripts/generate-skill-catalog.js --write` when a skill is added, removed, renamed, recategorized, or significantly changed.
 - Update `CHANGELOG.md` for notable changes.
 - Update `README.md` if usage, layout, validation, or behavior changes.
 - Keep Markdown ASCII-only unless there is a strong compatibility reason not to.
-- Keep `README.md`, `CHANGELOG.md`, `docs/framework-crosswalk.md`, and skill metadata aligned with the per-skill version policy.
+- Keep `README.md`, `CHANGELOG.md`, `docs/framework-crosswalk.md`, generated catalog blocks, and skill metadata aligned with the per-skill version policy.
 
 ## Validation
 
@@ -61,6 +61,9 @@ Run these commands before submitting changes:
 
 ```bash
 node --test test/validate.test.js
+node scripts/generate-skill-catalog.js --check
+node scripts/quality-gates.js --all
+node scripts/skill-health.js --check
 node scripts/validate-opencode.js
 ```
 

@@ -22,6 +22,8 @@ permission:
     "git show *": ask
     "node --test test/validate.test.js": ask
     "node scripts/validate-opencode.js": ask
+    "node scripts/generate-skill-catalog.js --check": ask
+    "node scripts/skill-health.js --check": ask
     "npm audit --package-lock-only*": ask
 ---
 
@@ -49,6 +51,8 @@ Your job is to assess security posture, identify risks, map findings to the rele
 
 Use these skills as the primary evaluation playbooks:
 
+<!-- generated:skill-catalog:agent-routing:start -->
+<!-- Do not edit manually. Run `node scripts/generate-skill-catalog.js --write`. -->
 | Skill | Use when |
 |---|---|
 | `mitre-attack-v19` | Mapping adversary behavior, detections, logs, incident narratives, TTPs, or threat hunting hypotheses |
@@ -66,6 +70,7 @@ Use these skills as the primary evaluation playbooks:
 | `cyber-kill-chain` | Modeling attack paths, kill chain stages, breakpoints, controls, and response actions |
 | `mitre-attack-detection` | Designing defensive detection logic and telemetry coverage using ATT&CK |
 | `cis-hardening` | Reviewing secure configuration, baselines, CIS Controls, CIS Benchmarks, and hardening priorities |
+<!-- generated:skill-catalog:agent-routing:end -->
 
 ## Evaluation Workflow
 

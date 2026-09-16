@@ -2,12 +2,14 @@
 
 This document maps the OpenCode cybersecurity skills to their source frameworks, assessment use cases, expected outputs, official sources, and version constraints.
 
-Project version: `0.0.3`
+Project version: `0.0.4`
 
 Tracked skills listed here keep the `metadata.version` recorded in Git HEAD unless their `SKILL.md` file has git-detected changes. A changed `SKILL.md` may move only to the immediate next patch metadata version. Framework target versions are separate and remain documented per skill.
 
 ## Crosswalk
 
+<!-- generated:skill-catalog:framework-crosswalk:start -->
+<!-- Do not edit manually. Run `node scripts/generate-skill-catalog.js --write`. -->
 | Skill | Framework | Use when | Expected output | Official source | Version policy |
 |---|---|---|---|---|---|
 | `mitre-attack-v19` | MITRE ATT&CK | Mapping adversary behaviors, TTPs, incident evidence, or hunting hypotheses | Tactic, technique, evidence, confidence, telemetry, detection, mitigation, and gap | https://attack.mitre.org | Target v19.1 unless the user requests latest |
@@ -25,6 +27,7 @@ Tracked skills listed here keep the `metadata.version` recorded in Git HEAD unle
 | `cyber-kill-chain` | Cyber Kill Chain | Modeling adversary progression and defensive breakpoints | Stage-by-stage attack path, exposed surface, controls, signals, response, and residual risk | https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html | Public model |
 | `mitre-attack-detection` | MITRE ATT&CK detection resources | Designing detections, hunting logic, and telemetry coverage | Tactic, technique, behavior, data source, logic, severity, false positives, response, and gap | https://attack.mitre.org | Target v19.1 unless the user requests latest |
 | `cis-hardening` | CIS Controls and CIS Benchmarks | Reviewing secure configuration and baseline hardening | Control, objective, recommended configuration, priority, impact, evidence, validation, and exceptions | https://www.cisecurity.org | CIS Controls v8 and current benchmark for the exact platform |
+<!-- generated:skill-catalog:framework-crosswalk:end -->
 
 ## Selection Rules
 

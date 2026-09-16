@@ -14,7 +14,7 @@ This repository contains project-scoped OpenCode cybersecurity skills, validatio
 - Keep skill names stable because users may reference them directly.
 - Each `SKILL.md` must live in a directory whose basename matches its `name` frontmatter field.
 - Each skill must include `references/standards.md`.
-- Update `docs/framework-crosswalk.md` when adding, removing, or renaming skills.
+- Update `scripts/skill-catalog.json` and regenerate catalog blocks with `node scripts/generate-skill-catalog.js --write` when adding, removing, or renaming skills.
 - Update `CHANGELOG.md` for notable changes.
 - Update `docs/versioning.md` when changing versioning policy or release process.
 
@@ -24,10 +24,13 @@ Run these checks after changing OpenCode config, agents, commands, skills, scrip
 
 ```bash
 node --test test/validate.test.js
+node scripts/generate-skill-catalog.js --check
+node scripts/quality-gates.js --all
+node scripts/skill-health.js --check
 node scripts/validate-opencode.js
 ```
 
-The validation script checks OpenCode configuration, agent permissions, skill metadata, required documentation, Markdown links, ASCII content, schema files, and version consistency.
+The validation scripts check OpenCode configuration, agent permissions, skill metadata, generated catalog freshness, CI quality gates, skill health, required documentation, Markdown links, ASCII content, schema files, and version consistency.
 
 ## Versioning
 

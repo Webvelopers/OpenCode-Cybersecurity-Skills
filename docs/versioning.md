@@ -2,9 +2,9 @@
 
 This project uses semantic versioning for repository releases and a Git-aware metadata version policy for individual skills.
 
-Current project version: `0.0.3`
+Current project version: `0.0.4`
 
-Initial skill metadata version: `0.0.3`
+Initial skill metadata version: `0.0.4`
 
 ## Version Sources
 
@@ -18,7 +18,7 @@ Initial skill metadata version: `0.0.3`
 
 ## Project Release Version
 
-The root `VERSION` file defines the project release version. For release `0.0.3`, the project includes versioning documentation updates and validation hardening for dependency directories and missing required documentation files.
+The root `VERSION` file defines the project release version. For release `0.0.4`, the project includes CI quality gates, scoped assessment commands, generated skill catalog tooling, a read-only skill health report, and validator module hardening.
 
 When publishing a new project release:
 

@@ -47,6 +47,16 @@ metadata:
 
 The `name` value must match the skill directory basename.
 
+## Catalog Standard
+
+When adding, removing, renaming, recategorizing, or significantly changing a skill, update `scripts/skill-catalog.json` and regenerate the derived catalog blocks:
+
+```bash
+node scripts/generate-skill-catalog.js --write
+```
+
+Generated blocks cover the `cybersecurity` agent skill routing table, `.opencode/skills/cybersecurity/README.md`, and `docs/framework-crosswalk.md`. Do not edit those generated blocks by hand.
+
 ## Body Standard
 
 Use this section order unless a skill has a strong reason to differ:
@@ -87,5 +97,9 @@ Skills must remain defensive and authorized. Do not include:
 Run the validator after authoring or modifying a skill:
 
 ```bash
+node --test test/validate.test.js
+node scripts/generate-skill-catalog.js --check
+node scripts/quality-gates.js --all
+node scripts/skill-health.js --check
 node scripts/validate-opencode.js
 ```

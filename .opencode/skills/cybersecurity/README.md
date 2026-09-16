@@ -2,12 +2,14 @@
 
 This folder contains defensive OpenCode skills based on official cybersecurity frameworks and the operational style of `mukul975/Anthropic-Cybersecurity-Skills`.
 
-Initial skill metadata version: `0.0.3`
+Initial skill metadata version: `0.0.4`
 
 This version is coordinated with the root project version in `VERSION` as the initial release baseline. Tracked skills keep the `metadata.version` recorded in Git HEAD unless their `SKILL.md` file has git-detected changes. A changed `SKILL.md` may move only to the immediate next patch metadata version. Framework target versions are tracked separately inside each skill as `metadata.target_version`.
 
 ## Framework Skills
 
+<!-- generated:skill-catalog:skill-readme-frameworks:start -->
+<!-- Do not edit manually. Run `node scripts/generate-skill-catalog.js --write`. -->
 | Skill | Target version | Scope | What it maps |
 |---|---:|---|---|
 | `mitre-attack-v19` | v19.1 | 15 tactics, Enterprise/Mobile/ICS | Adversary behaviors and TTPs |
@@ -16,6 +18,7 @@ This version is coordinated with the root project version in `VERSION` as the in
 | `mitre-d3fend-countermeasures` | v1.6.0 | Defensive knowledge graph | Defensive countermeasures |
 | `nist-ai-rmf-10` | 1.0 | Govern, Map, Measure, Manage | AI risk management |
 | `mitre-f3-fraud-ttp` | v1.1 | 8 tactics, 123 techniques | Cyber-enabled financial fraud TTPs |
+<!-- generated:skill-catalog:skill-readme-frameworks:end -->
 
 ## Folder Layout
 
@@ -28,6 +31,8 @@ This version is coordinated with the root project version in `VERSION` as the in
 
 ## Existing Operational Skills
 
+<!-- generated:skill-catalog:skill-readme-operational:start -->
+<!-- Do not edit manually. Run `node scripts/generate-skill-catalog.js --write`. -->
 - `owasp-appsec` (`appsec/owasp-appsec`): application, API, and service security review using OWASP Top 10, API Security, ASVS, and SAMM.
 - `owasp-genai-security` (`appsec/owasp-genai-security`): GenAI, LLM, RAG, agent, prompt, tool, and output security review using OWASP GenAI LLM Top 10 2026.
 - `mobile-appsec` (`appsec/mobile-appsec`): Android, iOS, hybrid, and mobile API review using OWASP MASVS, MASWE, and MASTG.
@@ -37,6 +42,7 @@ This version is coordinated with the root project version in `VERSION` as the in
 - `cyber-kill-chain` (`threat-modeling/cyber-kill-chain`): attack-path modeling and defensive controls using the Lockheed Martin Cyber Kill Chain.
 - `mitre-attack-detection` (`detection/mitre-attack-detection`): detection engineering, threat hunting, and defensive coverage using MITRE ATT&CK.
 - `cis-hardening` (`hardening/cis-hardening`): hardening and control prioritization using CIS Controls and CIS Benchmarks.
+<!-- generated:skill-catalog:skill-readme-operational:end -->
 
 ## Official Sources Used
 

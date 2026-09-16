@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 This project follows a simple human-readable changelog format. Dates use `YYYY-MM-DD`.
 
+## [0.0.4] - 2026-09-16
+
+### Added
+
+- Recorded the gstack-inspired repository improvement plan in `TODO.md`.
+- Added negative validation tests for scaffold placeholders, reference metadata, agent bash permissions, workflow audit ordering, and documentation drift.
+- Split OpenCode validation into focused modules for config, agent, workflow, skills, docs, and version policy.
+- Added a checked skill catalog manifest and generator for agent routing, skill README entries, and framework crosswalk rows.
+- Added CI quality gates for actionlint, changed-text secret scanning with suppressed values, forbidden tracked artifacts, Markdown hygiene, and dependency audit coverage.
+- Added scoped OpenCode assessment commands for appsec, AI security, supply chain, vulnerability triage, and a lightweight security router.
+- Added a read-only skill health report and optional Graphify health documentation that keeps generated output untracked.
+
+### Fixed
+
+- Aligned the README MITRE D3FEND framework note with the skill target version `v1.6.0`.
+- Added deterministic `.opencode` package-lock preparation before the CI dependency audit.
+- Hardened validation for scaffold placeholders, `Last verified` dates, official-source URLs, and skill metadata consistency across repository docs.
+- Moved validation filesystem and Git inspection into an explicit `main()` context instead of module-load side effects.
+- Added generated catalog freshness validation to prevent manual drift in catalog surfaces.
+- Hardened command validation so assessment commands must route to the `cybersecurity` agent, accept user scope, preserve read-only boundaries, and reference required skills.
+- Added CI and agent allowlist coverage for the skill health check.
+
 ## [0.0.3] - 2026-09-08
 
 Versioning documentation and validation hardening release.
